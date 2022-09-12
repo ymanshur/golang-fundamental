@@ -23,6 +23,18 @@ type Group struct {
 	IsAvailable bool
 }
 
+func (group Group) Display() {
+	fmt.Printf("Name : %s", group.Name)
+	fmt.Println("")
+	fmt.Printf("Member count : %d", len(group.Users))
+	fmt.Println("")
+
+	fmt.Println("Users name :")
+	for _, user := range group.Users {
+		fmt.Println(user.FirstName)
+	}
+}
+
 func main() {
 	// user := User{}
 	// user.ID = 1
@@ -49,21 +61,22 @@ func main() {
 
 	group := Group{"Gamer", user, users, true}
 
-	displayGroup(group)
+	// displayGroup(group)
+	group.Display()
 }
 
 func displayUser(user User) string {
 	return fmt.Sprintf("Name : %s %s, Email : %s", user.FirstName, user.LastName, user.Email)
 }
 
-func displayGroup(group Group) {
-	fmt.Printf("Name : %s", group.Name)
-	fmt.Println("")
-	fmt.Printf("Member count : %d", len(group.Users))
-	fmt.Println("")
+// func displayGroup(group Group) {
+// 	fmt.Printf("Name : %s", group.Name)
+// 	fmt.Println("")
+// 	fmt.Printf("Member count : %d", len(group.Users))
+// 	fmt.Println("")
 
-	fmt.Println("Users name :")
-	for _, user := range group.Users {
-		fmt.Println(user.FirstName)
-	}
-}
+// 	fmt.Println("Users name :")
+// 	for _, user := range group.Users {
+// 		fmt.Println(user.FirstName)
+// 	}
+// }
