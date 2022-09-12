@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type User struct {
 	ID        int
@@ -10,9 +12,24 @@ type User struct {
 	IsActive  bool
 }
 
+func (user User) Display() string {
+	return fmt.Sprintf("Name : %s %s, Email : %s", user.FirstName, user.LastName, user.Email)
+}
+
+type Group struct {
+	Name        string
+	Admin       User
+	Users       []User
+	IsAvailable bool
+}
+
 func main() {
 	// user := User{}
-	user := User{1, "Zelda", "Safitri", "zelda@nintendo.com", true}
+	// user.ID = 1
+	// user.FirstName = "Zelda"
+	// user.LastName = "Safitri"
+	// user.Email = "zelda@nintendo.com"
+	// user.IsActive = true
 	// user := User{
 	// 	ID:        1,
 	// 	FirstName: "Zelda",
@@ -20,23 +37,33 @@ func main() {
 	// 	Email:     "zelda@nintendo.com",
 	// 	IsActive:  true,
 	// }
-	// user.ID = 1
-	// user.FirstName = "Zelda"
-	// user.LastName = "Safitri"
-	// user.Email = "zelda@nintendo.com"
-	// user.IsActive = true
+	user := User{1, "Zelda", "Safitri", "zelda@nintendo.com", true}
+	user2 := User{2, "Link", "Awekening", "link@nintendo.com", true}
 
-	user2 := User{}
-	user2.ID = 2
-	user2.FirstName = "Link"
-	user2.LastName = "Awekening"
-	user2.Email = "link@nintendo.com"
-	user2.IsActive = true
-
+	// fmt.Println(user)
 	fmt.Println(displayUser(user))
-	fmt.Println(user2)
+	// fmt.Println(user2)
+	fmt.Println(user2.Display())
+
+	users := []User{user, user2}
+
+	group := Group{"Gamer", user, users, true}
+
+	displayGroup(group)
 }
 
 func displayUser(user User) string {
 	return fmt.Sprintf("Name : %s %s, Email : %s", user.FirstName, user.LastName, user.Email)
+}
+
+func displayGroup(group Group) {
+	fmt.Printf("Name : %s", group.Name)
+	fmt.Println("")
+	fmt.Printf("Member count : %d", len(group.Users))
+	fmt.Println("")
+
+	fmt.Println("Users name :")
+	for _, user := range group.Users {
+		fmt.Println(user.FirstName)
+	}
 }
