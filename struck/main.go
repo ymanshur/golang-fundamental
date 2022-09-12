@@ -29,10 +29,14 @@ func main() {
 	user2 := User{}
 	user2.ID = 2
 	user2.FirstName = "Link"
-	user2.LastName = "Aweking"
+	user2.LastName = "Awekening"
 	user2.Email = "link@nintendo.com"
 	user2.IsActive = true
 
-	fmt.Println(user)
+	fmt.Println(displayUser(user))
 	fmt.Println(user2)
+}
+
+func displayUser(user User) string {
+	return fmt.Sprintf("Name : %s %s, Email : %s", user.FirstName, user.LastName, user.Email)
 }
